@@ -1,0 +1,27 @@
+{
+  "name": "create-sp2013-react-mobx-app",
+  "version": "1.0.0",
+  "description": "This package extends create-react-app, but is targeted at SharePoint 2013 development with react and mobx.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "SharePoint",
+    "2013",
+    "react",
+    "mobx"
+  ],
+  "author": "Kayode Bristol",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.3.0",
+    "shelljs": "^0.8.2"
+  },
+  "bin": {
+    "create-sp2013-react-mobx-app": "index.js"
+  },
+  "devDependencies": {
+    "prettier-stylelint": "^0.4.2"
+  }
+}
