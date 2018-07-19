@@ -19,15 +19,18 @@ let styleTemplates = require('./templates/styleTemplates.js')
   const createReactApp = () => {
     return new Promise(resolve=>{
       if(appName){
-        shell.exec(`create-react-app ${appName}`, () => {
-          console.log("Created react app")
-          resolve(true)
+        shell.exec('npm i create-react-app -g', ()=>{
+          shell.exec(`create-react-app ${appName}`, () => {
+            console.log("Created react app")
+            resolve(true)
+          })
         })
-      }else{
+      }
+      else{
         console.log("\nNo app name was provided.".red)
         console.log("\nProvide an app name in the following format: ")
         console.log("\ncreate-sp2013-react-mobx-app ", "app-name\n".cyan)
-          resolve(false)
+        resolve(false)
       }
     })
   }
@@ -122,12 +125,12 @@ let styleTemplates = require('./templates/styleTemplates.js')
   }
 
   const run = async () => {
-    /*let success = await createReactApp()
+    let success = await createReactApp()
     if(!success){
       console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
       return false;
     }
-    */
+    
    await updatePackageJSON(`${appDirectory}/package.json`, (data)=>{
     console.log(typeof data); 
     data = Object.assign({proxy: "http://localhost:8080" }, data); 
