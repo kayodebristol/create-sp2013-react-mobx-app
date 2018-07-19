@@ -1,4 +1,4 @@
-/*!
+module.exports = `/*!
 Math.uuid.js (v1.4)
 http://www.broofa.com
 mailto:robert@broofa.com
@@ -90,3 +90,4 @@ Dual licensed under the MIT and GPL licenses.
       });
     };
   })();
+  `

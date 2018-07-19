@@ -1,3 +1,3 @@
 module.exports = {
-    'index.html': './index.html'
+    'index.html': require('./index.html')
 }

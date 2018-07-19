@@ -23,5 +23,9 @@
   },
   "devDependencies": {
     "prettier-stylelint": "^0.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kayodebristol/create-sp2013-react-mobx-app.git"
   }
 }

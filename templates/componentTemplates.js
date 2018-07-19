@@ -1,3 +1,3 @@
 module.exports = {
-    'fields.js': './fields.js'
+    'fields.js': require('./fields.js')
 }

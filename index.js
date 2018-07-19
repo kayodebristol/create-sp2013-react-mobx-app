@@ -3,6 +3,10 @@
 let shell = require('shelljs')
 let colors = require('colors')
 let fs = require('fs') //fs already comes included with node.
+
+let appName = process.argv[2]
+let appDirectory = `${process.cwd()}/${appName}`
+
 let rootTemplates = require('./templates/rootTemplates.js')
 let srcTemplates = require('./templates/styleTemplates.js')
 let modelTemplates = require('./templates/modelTemplates.js')
@@ -11,38 +15,6 @@ let containerTemplates = require('./templates/containerTemplates.js')
 let styleTemplates = require('./templates/styleTemplates.js')
 
 
-let appName = process.argv[2]
-let appDirectory = `${process.cwd()}/${appName}`
-
-const run = async () => {
-    let success = await createReactApp()
-    if(!success){
-      console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
-      return false;
-    }
-    await cdIntoNewApp()
-    await makeDirectories()
-    await installPackages()
-    await updateTemplates(rootTemplates, '')
-    await updateTemplates(srcTemplates, 'src')
-    await updateTemplates(componentTemplates, 'src/components')
-    await updateTemplates(containerTemplates, 'src/containers')
-    await updateTemplates(modelTemplates, 'src/models')
-    await updateTemplates(styleTemplates, 'src/styles')
-    await updatePackageJSON(package.json, (data)=>{
-      data.push({ 
-        proxy: "http://localhost:8080",
-
-      })
-      data.scripts.push({
-        serve: "npm run proxy",
-        proxy: "node ./api-server.js",
-        dev: `concurrently --kill-others \"npm run proxy\" \"npm run start\"`
-      })
-    })
-    console.log("All done")
-  }
-  run() 
 
   const createReactApp = () => {
     return new Promise(resolve=>{
@@ -62,7 +34,10 @@ const run = async () => {
 
   const cdIntoNewApp = () => {
     return new Promise(resolve=>{
-      shell.exec(`cd ${appName}`, ()=>{resolve()})
+      shell.cd(`${appName}`)
+      console.log(`\nEntering ${appName} folder`)
+      resolve(true)
+      
     })
   }
 
@@ -71,21 +46,23 @@ const run = async () => {
       shell.exec(`mkdir config`, 
         console.log("\nCreated sp-rest-proxy config folder\n".green)
       )
-      shell.exec(`cd src`, 
-        console.log("\nConfiguring src folder\n".green)
-      )
+      shell.cd(`src`) 
+      console.log("\nConfiguring src folder\n".green)
+      
       shell.exec(`mkdir components`,
         console.log("\nCreated components folder\n".green) 
       )
       shell.exec(`mkdir containers`,
         console.log("\nCreated containers folder\n".green) 
       )
-      shell.exec(`mkdir components`,
+      shell.exec(`mkdir models`,
         console.log("\nCreated models folder\n".green) 
       )
       shell.exec(`mkdir styles`,
         console.log("\nCreated styles folder\n".green) 
       )
+      shell.cd(`..`) 
+      resolve(true)
     })
   }
 
@@ -107,20 +84,22 @@ const run = async () => {
   const installPackages = () => {
     return new Promise(resolve=>{
       console.log("\nInstalling mobx, mobx-react, @pnp/common @pnp/graph, @pnp/logging, @pnp/odata, @pnp/sp, datejs, mobx, mobx-react, office-ui-fabric-react, react-table, styled-components\n".cyan)
-      shell.exec(`npm install --save mobx@">4.0.0 <5.0.0" mobx-react @pnp/common @pnp/graph @pnp/logging @pnp/odata @pnp/sp datejs mobx mobx-react office-ui-fabric-react react-table styled-components`, () => {
+      shell.exec('npm i mobx@">4.0.0 <5.0.0" mobx-react @pnp/common @pnp/graph @pnp/logging @pnp/odata @pnp/sp datejs mobx mobx-react office-ui-fabric-react react-table styled-components', () => {
         console.log("\nFinished installing default packages\n".green)
+        console.log ("\nInstalling dev dependencies \n".cyan) 
+        shell.exec('npm i --save-dev babel-polyfill babel-preset-env babel-preset-mobx sp-rest-proxy concurrently eslint prettier-stylelint prettier-eslint', () => {
+          console.log("\nFinished installing dev dependencies\n".green)
+          resolve()
+        })
       })      
       
-      console.log("\nInstalling dev dependencies \n".cyan)
-      shell.exec(`npm i --save-dev babel-polyfill babel-preset-env babel-preset-mobx mobx-react-devtools sp-rest-proxy concurrently`, () => {
-        console.log("\nFinished installing dev dependencies\n".green)
-        resolve()
-      })
+      
     })
   } 
   
   const updatePackageJSON = (filename, updateCb, cb) => {
-    fs.readFile(filename, function (er, data) {
+    return new Promise(resolve=>{
+      fs.readFile(filename, function (er, data) {
       // ignore errors here, just don't save it.
       try {
         data = JSON.parse(data.toString("utf8"))
@@ -132,9 +111,45 @@ const run = async () => {
         return cb()
       }
   
-      updateCb(data);
+      data = updateCb(data);
+      
       data = JSON.stringify(data, null, 2) + "\n"
-      fs.writeFile(filename, data, cb)
+      console.log(data)
+      fs.writeFile(filename, data, (err)=>{if(err){console.log(err)}})
+      })
+      resolve(true)
     })
   }
+
+  const run = async () => {
+    /*let success = await createReactApp()
+    if(!success){
+      console.log('Something went wrong while trying to create a new React app using create-react-app'.red)
+      return false;
+    }
+    */
+   await updatePackageJSON(`${appDirectory}/package.json`, (data)=>{
+    console.log(typeof data); 
+    data = Object.assign({proxy: "http://localhost:8080" }, data); 
+    data.scripts = Object.assign({
+      serve: "npm run proxy",
+      proxy: "node ./api-server.js",
+      dev: `concurrently --kill-others \"npm run proxy\" \"npm run start\"`
+    }, data.scripts)
+    console.log(data)
+    return data
+  }, ()=>{console.log('Error updating package.json')})
+    await cdIntoNewApp()
+    await makeDirectories()
+    await updateTemplates(rootTemplates, '')
+    await updateTemplates(srcTemplates, 'src')
+    await updateTemplates(componentTemplates, 'src/components')
+    await updateTemplates(containerTemplates, 'src/containers')
+    await updateTemplates(modelTemplates, 'src/models')
+    await updateTemplates(styleTemplates, 'src/styles')
+    
+    await installPackages()
+    console.log("All done")
+  }
+  run() 
 

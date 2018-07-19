@@ -1,4 +1,4 @@
-import {extendObservable, configure, ObservableMap, autorun, observable} from 'mobx'; 
+module.exports = `import {extendObservable, configure, ObservableMap, autorun, observable} from 'mobx'; 
 import { sp, EmailProperties  } from "@pnp/sp";
 
 
@@ -19,3 +19,4 @@ class Store{
 const store = new Store; 
 export default store;
 
+`

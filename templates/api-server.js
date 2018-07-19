@@ -1,4 +1,4 @@
-const RestProxy = require('sp-rest-proxy');
+module.exports = `const RestProxy = require('sp-rest-proxy');
 
 const settings = {
     configPath: './config/private.json', // Location for SharePoint instance mapping and credentials
@@ -8,3 +8,4 @@ const settings = {
 
 const restProxy = new RestProxy(settings);
 restProxy.serve();
+`

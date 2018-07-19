@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+module.exports = `import React, { Component } from 'react';
 import { observer } from 'mobx-react'; 
 import styled from 'styled-components';
 import '../styles/app.css'
@@ -17,3 +17,4 @@ const App = observer(class App extends Component {
       );
     }
   })
+`

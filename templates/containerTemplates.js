@@ -1,3 +1,3 @@
 module.exports = {
-    'app.js': './app.js'
+    'app.js': require('./app.js')
 }

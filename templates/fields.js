@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+module.exports = `import React, { Component } from 'react';
 import Flexbox from 'flexbox-react'; 
 import { Dropdown} from 'office-ui-fabric-react/lib/Dropdown';
 import { TextField, MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
@@ -375,6 +375,4 @@ export const Table = observer (class Table extends Component{
         return this.renderComp(); 
     }
 } )
-
-
-
+`

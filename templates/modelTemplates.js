@@ -1,5 +1,5 @@
 module.exports = {
-    'store.js': './store.js',
-    'uuid.js': './uuid.js',
-    'babelPolyfill.js': './babelPolyfill.js'
+    'store.js': require('./store.js'),
+    'uuid.js': require('./uuid.js'),
+    'babelPolyfill.js': require('./babelPolyfill.js')
 }

@@ -1,3 +1,4 @@
-if(!global._babelPolyfill){
+module.exports = `if(!global._babelPolyfill){
     require("babel-polyfill");
   }  
+`

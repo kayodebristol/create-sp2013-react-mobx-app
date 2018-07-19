@@ -1,3 +1,3 @@
 module.exports = {
-    'app.css': './app.css'
+    'app.css': require('./app.css')
 }

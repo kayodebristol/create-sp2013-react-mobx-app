@@ -1,4 +1,4 @@
-import './model/babelPolyfill';
+module.exports = `import './model/babelPolyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -31,3 +31,4 @@ ReactDOM.render(
     </div>, document.getElementById(guid)
 );
 
+`
