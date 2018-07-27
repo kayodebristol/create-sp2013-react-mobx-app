@@ -86,11 +86,11 @@ let styleTemplates = require('./templates/styleTemplates.js')
 
   const installPackages = () => {
     return new Promise(resolve=>{
-      console.log("\nInstalling mobx, mobx-react, @pnp/common @pnp/graph, @pnp/logging, @pnp/odata, @pnp/sp, datejs, mobx, mobx-react, office-ui-fabric-react, react-table, styled-components\n".cyan)
-      shell.exec('npm i mobx@">4.0.0 <5.0.0" mobx-react @pnp/common @pnp/graph @pnp/logging @pnp/odata @pnp/sp datejs mobx mobx-react office-ui-fabric-react react-table styled-components', () => {
+      console.log("\nInstalling mobx, mobx-react, @pnp/common @pnp/graph, @pnp/logging, @pnp/odata, @pnp/sp, datejs, office-ui-fabric-react, react-table, styled-components js-logger\n".cyan)
+      shell.exec('npm i mobx@">4.0.0 <5.0.0" mobx-react @pnp/common @pnp/graph @pnp/logging @pnp/odata @pnp/sp datejs office-ui-fabric-react react-table styled-components js-logger ', () => {
         console.log("\nFinished installing default packages\n".green)
         console.log ("\nInstalling dev dependencies \n".cyan) 
-        shell.exec('npm i --save-dev babel-polyfill babel-preset-env babel-preset-mobx sp-rest-proxy concurrently eslint prettier-stylelint prettier-eslint', () => {
+        shell.exec('npm i --save-dev babel-polyfill babel-preset-env babel-preset-mobx sp-rest-proxy concurrently eslint prettier-stylelint prettier-eslint babel-plugin-js-logger ', () => {
           console.log("\nFinished installing dev dependencies\n".green)
           resolve()
         })

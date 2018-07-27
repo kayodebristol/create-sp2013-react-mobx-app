@@ -23,30 +23,30 @@ export const FabricTextField = observer (class FabricTextField extends Component
     }
     _onChanged(value){
         console.log('TextField onChanged: ', value);
-        this.props.field.value = value; 
+        this.props.value = value; 
     }
     renderComp(){
         let comp; 
             comp = 
                 <Flexbox className='label-field' flexDirection='column' flex='1 1 auto' alignItems='flex-start'  >
                     <Flexbox className='label' >
-                        <span className='ms-font-s ms-fontWeight-semibold ms-fontColor-themePrimary'>{this.props.field.label}</span>
+                        <span className='ms-font-s ms-fontWeight-semibold ms-fontColor-themePrimary'>{this.props.label}</span>
                     </Flexbox>
-                    <Flexbox className='field' width={this.props.field.width} >
+                    <Flexbox className='field' width={this.props.width} >
                         <TextField 
                             autoComplete='on'
-                            placeHolder={this.props.field.placeHolder} 
-                            className={this.props.field.name} 
-                            id={this.props.field.id} 
-                            name={this.props.field.name}
-                            value={this.props.field.value} 
-                            onBlur={this.props.field.handleControlOnBlur} 
-                            errorMessage={this.props.field.errorMessage} 
-                            readOnly={this.props.field.readOnly} 
-                            disabled={this.props.field.readOnly}
-                            inputClassName={this.props.field.name}
-                            onFocus={this.props.field.handleControlInFocus}
-                            required={this.props.field.required} 
+                            placeHolder={this.props.placeHolder} 
+                            className={this.props.name} 
+                            id={this.props.id} 
+                            name={this.props.name}
+                            value={this.props.value} 
+                            onBlur={this.props.handleControlOnBlur} 
+                            errorMessage={this.props.errorMessage} 
+                            readOnly={this.props.readOnly} 
+                            disabled={this.props.readOnly}
+                            inputClassName={this.props.name}
+                            onFocus={this.props.handleControlInFocus}
+                            required={this.props.required} 
                             resizable={false}
                             autoAdjustHeight
                             onChanged={this._onChanged}
@@ -70,35 +70,35 @@ export const FabricMaskedTextField = observer (class FabricMaskedTextField exten
     }
     _onChanged(value){
         console.log(value)
-        this.props.field.value = value;
+        this.props.value = value;
     }
     renderComp(){
         let comp; 
             comp = 
                 <Flexbox className='label-field' flexDirection='column' flex='1 1 auto' alignItems='flex-start' >
                     <Flexbox className='label' >
-                        <span className='ms-font-s ms-fontWeight-semibold ms-fontColor-themePrimary'>{this.props.field.label}</span>
+                        <span className='ms-font-s ms-fontWeight-semibold ms-fontColor-themePrimary'>{this.props.label}</span>
                     </Flexbox>
-                    <Flexbox className='field' width={this.props.field.width} >
+                    <Flexbox className='field' width={this.props.width} >
                         <MaskedTextField 
                             autoComplete='on'
-                            placeHolder={this.props.field.placeHolder} 
-                            className={this.props.field.name} 
-                            id={this.props.field.id} 
-                            name={this.props.field.name}
-                            value={this.props.field.value} 
-                            defaultValue={this.props.field.value}
-                            onBlur={this.props.field.handleControlOnBlur}
+                            placeHolder={this.props.placeHolder} 
+                            className={this.props.name} 
+                            id={this.props.id} 
+                            name={this.props.name}
+                            value={this.props.value} 
+                            defaultValue={this.props.value}
+                            onBlur={this.props.handleControlOnBlur}
                             onChanged={this._onChanged} 
-                            errorMessage={this.props.field.errorMessage} 
-                            readOnly={this.props.field.readOnly} 
-                            disabled={this.props.field.readOnly}
-                            inputClassName={this.props.field.name}
-                            onFocus={this.props.field.handleControlInFocus}
-                            required={this.props.field.required} 
-                            mask={this.props.field.mask}
+                            errorMessage={this.props.errorMessage} 
+                            readOnly={this.props.readOnly} 
+                            disabled={this.props.readOnly}
+                            inputClassName={this.props.name}
+                            onFocus={this.props.handleControlInFocus}
+                            required={this.props.required} 
+                            mask={this.props.mask}
                             resizable={false}
-                            width={this.props.field.width}
+                            width={this.props.width}
                             
                         />
                     </Flexbox>
@@ -124,12 +124,12 @@ export const FabricChoiceGroup = observer (class FabricChoiceGroup extends Compo
             comp = 
                 <div>
                     <ChoiceGroup
-                    defaultSelectedKey={this.props.field.defaultSelectedKey}
-                    selectedKey={this.props.field.selectedKey}
-                    options={this.props.field.options}
-                    onChange={this.props.field.onChange}
-                    label={this.props.field.label}
-                    required={this.props.field.required}
+                    defaultSelectedKey={this.props.defaultSelectedKey}
+                    selectedKey={this.props.selectedKey}
+                    options={this.props.options}
+                    onChange={this.props.onChange}
+                    label={this.props.label}
+                    required={this.props.required}
                     />
                 </div>
     
@@ -148,14 +148,14 @@ export const FabricDropdown = observer (class FabricDropDown extends Component {
         this.renderComp = this.renderComp.bind(this); 
     }
     _onChange(item){
-        const options = this.props.field.options.slice();
+        const options = this.props.options.slice();
         const key =  item.key; 
 
-        this.props.field.selectedKey = key;
-        this.props.field.value = options[key].text;
+        this.props.selectedKey = key;
+        this.props.value = options[key].text;
        
-        console.log(this.props.field.selectedKey); 
-        console.log(this.props.field.value); 
+        console.log(this.props.selectedKey); 
+        console.log(this.props.value); 
         console.log('onChanged: ', item); 
     }
     renderComp(){
@@ -163,20 +163,20 @@ export const FabricDropdown = observer (class FabricDropDown extends Component {
             comp = 
                 <Flexbox flexDirection='column' flex='1 1 auto' alignItems='flex-start' >
                     <Flexbox className='label' >
-                        <span className='ms-font-m ms-fontWeight-semibold ms-fontColor-themePrimary'>{this.props.field.label}:</span>
+                        <span className='ms-font-m ms-fontWeight-semibold ms-fontColor-themePrimary'>{this.props.label}:</span>
                     </Flexbox>
                     <Flexbox className='field'>
                         <Dropdown 
-                        placeHolder={this.props.field.placeHolder} 
-                        name={this.props.field.name} 
-                        value={this.props.field.value}
+                        placeHolder={this.props.placeHolder} 
+                        name={this.props.name} 
+                        value={this.props.value}
                         
-                        options={this.props.field.options.slice()} 
+                        options={this.props.options.slice()} 
                         onChanged={this._onChange}
-                        selectedKey={this.props.field.selectedKey} 
-                        defaultSelectedKeys={this.props.field.defaultSelectedKey} 
-                        disabled={this.props.field.readOnly}
-                        dropdownWidth={this.props.field.dropdownWidth} />
+                        selectedKey={this.props.selectedKey} 
+                        defaultSelectedKeys={this.props.defaultSelectedKey} 
+                        disabled={this.props.readOnly}
+                        dropdownWidth={this.props.dropdownWidth} />
                     </Flexbox>
                 </Flexbox>
     
@@ -225,7 +225,7 @@ export const FabricDatePicker = observer (class FabricDatePicker extends Compone
           this._onSelectDate = this._onSelectDate.bind(this);
     }
     _onClick(event){
-        this.props.field.showCalendar = !this.props.field.showCalendar; 
+        this.props.showCalendar = !this.props.showCalendar; 
 
         /*
         this.setState((prevState) => {
@@ -236,7 +236,7 @@ export const FabricDatePicker = observer (class FabricDatePicker extends Compone
     };
     
     _onDismiss(){
-        this.props.field.showCalendar = false; 
+        this.props.showCalendar = false; 
         /*
         this.setState((prevState) => {
           prevState.showCalendar = false;
@@ -246,8 +246,8 @@ export const FabricDatePicker = observer (class FabricDatePicker extends Compone
     };
     
     _onSelectDate(date){
-        this.props.field.showCalendar = false; 
-        this.props.field.selectedDate = date; 
+        this.props.showCalendar = false; 
+        this.props.selectedDate = date; 
         /*
         this.setState((prevState) => {
           prevState.showCalendar = false;
@@ -268,10 +268,10 @@ export const FabricDatePicker = observer (class FabricDatePicker extends Compone
                         <div ref={calendarBtn => (this._calendarButtonElement )}>
                             <DefaultButton
                                 onClick={this._onClick}
-                                text={!this.props.field.selectedDate ? this.props.field.label : this.props.field.selectedDate.toLocaleDateString()}
+                                text={!this.props.selectedDate ? this.props.label : this.props.selectedDate.toLocaleDateString()}
                             />
                         </div>
-                            {this.props.field.showCalendar && (
+                            {this.props.showCalendar && (
                                 <Callout
                                     isBeakVisible={false}
                                     className="ms-DatePicker-callout"
@@ -287,13 +287,13 @@ export const FabricDatePicker = observer (class FabricDatePicker extends Compone
                                         onSelectDate={this._onSelectDate}
                                         onDismiss={this._onDismiss}
                                         isMonthPickerVisible={this.props.isMonthPickerVisible}
-                                        value={this.props.field.selectedDate}
+                                        value={this.props.selectedDate}
                                         firstDayOfWeek={DayOfWeek.Sunday}
                                         strings={this.DayPickerStrings}
-                                        isDayPickerVisible={this.props.field.isDayPickerVisible}
-                                        highlightCurrentMonth={this.props.field.highlightCurrentMonth}
-                                        highlightSelectedMonth={this.props.field.highlightSelectedMonth}
-                                        showMonthPickerAsOverlay={this.props.field.showMonthPickerAsOverlay}
+                                        isDayPickerVisible={this.props.isDayPickerVisible}
+                                        highlightCurrentMonth={this.props.highlightCurrentMonth}
+                                        highlightSelectedMonth={this.props.highlightSelectedMonth}
+                                        showMonthPickerAsOverlay={this.props.showMonthPickerAsOverlay}
                                     />
                                     </FocusTrapZone>
                                 </Callout>
@@ -348,9 +348,9 @@ export const Table = observer (class Table extends Component{
             contentEditable
             suppressContentEditableWarning
             onBlur={e => {
-              const data = [...this.props.field.data];
+              const data = [...this.props.data];
               data[cellInfo.index][cellInfo.column.id] = e.target.innerHTML;
-              this.props.field.data = data ;
+              this.props.data = data ;
             }}
             dangerouslySetInnerHTML={{
               __html: this.props.fields.data[cellInfo.index][cellInfo.column.id]
@@ -364,8 +364,8 @@ export const Table = observer (class Table extends Component{
             
         let comp =(    
         <ReactTable className='table-striped-highlight' style={{width: '75%'}}
-                data={this.props.field.data.slice()}
-                columns={this.props.field.columns.slice()}
+                data={this.props.data.slice()}
+                columns={this.props.columns.slice()}
               />
         )
         

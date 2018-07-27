@@ -1,7 +1,8 @@
 module.exports = `import React, { Component } from 'react';
 import { observer } from 'mobx-react'; 
 import styled from 'styled-components';
-import '../styles/app.css'
+import '../styles/app.css';
+
 const App = observer(class App extends Component {
     render() {
       return (
@@ -17,4 +18,6 @@ const App = observer(class App extends Component {
       );
     }
   })
+
+export default App;
 `

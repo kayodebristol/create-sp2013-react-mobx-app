@@ -1,18 +1,18 @@
 module.exports = `{
-    "presets": [
-  
-      ["env", {
-  
-        "targets": {
-  
-          "browsers": ["last 2 versions", "IE 10"]
-  
-        }
-  
-      }],
-      "mobx"
-        
-    ]
-  
-  }
+
+  "presets": [
+    "es2015", "stage-0", "react","mobx",
+    ["env", {
+
+      "targets": {
+
+        "browsers": ["last 2 versions", "IE 10"]
+
+      }
+
+    }]
+  ],
+  "plugins": ["transform-runtime", "transform-decorators-legacy", "js-logger"]
+
+}
 `

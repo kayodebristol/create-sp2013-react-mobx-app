@@ -9,7 +9,7 @@ class Store{
             protocol: window.location.href.split(':')[0] ,
             error: null,
             status: {},
-            settings: /*eslint-disable*/ settings /*esling-enable*/
+            settings: /*eslint-disable*/ spReactApp.settings /*esling-enable*/
         });
         
         configure({ isolateGlobalState: true});
