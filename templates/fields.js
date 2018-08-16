@@ -154,9 +154,6 @@ export const FabricDropdown = observer (class FabricDropDown extends Component {
         this.props.selectedKey = key;
         this.props.value = options[key].text;
        
-        console.log(this.props.selectedKey); 
-        console.log(this.props.value); 
-        console.log('onChanged: ', item); 
     }
     renderComp(){
         let comp; 
