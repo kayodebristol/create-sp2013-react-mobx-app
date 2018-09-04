@@ -18,7 +18,18 @@ Once installed, use the cli to create a new project.
 ````
 create-sp-2013-react-mobx-app my-new-project-name
 ````
-
+* CD, into your project directory. 
+* Configure [sp-rest-proxy](https://github.com/koltyakov/sp-rest-proxy)
+````
+npm run proxy
+```` 
+then, answer the interactive questions to configure the proxy connection to your SharePoint site. Ctrl-c to end task.
+* Execute 
+````
+npm run dev 
+````
+(uses concurrently), to start the proxy and dev server simultaneously
+* Develop interactively, with real SharePoint data. Enjoy!
 
 ### Prerequisites
 
