@@ -33,7 +33,7 @@ Please see my other starter kits for those platforms.
 
 ## Authors
 
-* **Kayode Bristol** - *Initial work* - [create-sp2013-react-mobx-app](https://github.com/kayodebristol/create-sp2013-react-mobx-app)
+* **Kayode Bristol** - *Initial work* - [create-sp-vanilla-js](https://github.com/kayodebristol/create-sp-vanilla-js)
 
 ## License
 
