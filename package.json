@@ -1,6 +1,6 @@
 {
   "name": "create-sp2013-react-mobx-app",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This package extends create-react-app, but is targeted at SharePoint 2013 development with react and mobx.",
   "main": "index.js",
   "scripts": {
